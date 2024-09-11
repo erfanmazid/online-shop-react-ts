@@ -1,15 +1,16 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
+import { queryClient } from "../lib";
 
 interface Props {
   children: ReactNode;
 }
-const client = new QueryClient();
+
 const Providers = ({ children }: Props) => {
   return (
     <>
-      <QueryClientProvider client={client}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
       <ToastContainer rtl />
     </>
   );
