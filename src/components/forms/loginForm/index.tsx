@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z, ZodType } from "zod";
-import { useLogin } from "../../../hooks/login";
+import { useLogin } from "../../../hooks/login/useLogin";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
