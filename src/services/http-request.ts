@@ -32,7 +32,7 @@ httpRequest.interceptors.response.use(
 
     const refresh = Cookies.get("refreshToken");
 
-    if (status === 401 && refreshToken) {
+    if (status === 401 && refresh) {
       return refreshToken(refresh)
         .then((res) => {
           Cookies.set("accessToken", res?.data.token.accessToken);
