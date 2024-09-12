@@ -1,12 +1,12 @@
 import Cookies from "js-cookie";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useLogOut } from "../../hooks/logout/useLogOut";
 import AdminNav from "./nav/adminMobileNav";
 
 export default function AdminHeader() {
-  const { mutate } = useLogOut();
+  const { mutate, isSuccess } = useLogOut();
   const navigate = useNavigate();
   const [nav, setNav] = useState<boolean>(false);
 
@@ -15,14 +15,20 @@ export default function AdminHeader() {
   };
 
   function handelLogOut() {
+    // این جا رو چ کنم؟؟؟
     mutate();
-    Cookies.remove("accessToken");
-    Cookies.remove("refreshToken");
-    Cookies.remove("id");
-    localStorage.removeItem("role");
-    toast.success("با موفقیت خارج شدید");
-    navigate("/");
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      Cookies.remove("accessToken");
+      Cookies.remove("refreshToken");
+      Cookies.remove("id");
+      localStorage.removeItem("role");
+      toast.success("با موفقیت خارج شدید");
+      navigate("/");
+    }
+  }, [isSuccess, navigate]);
 
   return (
     <header className="flex justify-between items-center mx-auto p-5 myContainer relative  dark:text-[#fff]">
