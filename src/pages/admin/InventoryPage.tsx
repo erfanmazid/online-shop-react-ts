@@ -1,9 +1,16 @@
+import { useContext } from "react";
 import DropDown from "../../components/dropDown";
+import AddCategoryModal from "../../components/modals/addCategory";
 import InventoryTable from "../../components/tabls/inventory/InventoryTable";
+import { ModalsContext } from "../../contexts/modalsContext";
 import { useGetProduct } from "../../hooks/products/useGetProducts";
 
 export default function InventoryPage() {
   const { data, isLoading } = useGetProduct("");
+
+  const { setOpenAddCategory } = useContext(ModalsContext) as {
+    setOpenAddCategory: (value: boolean) => void;
+  };
 
   if (isLoading) {
     return (
@@ -16,6 +23,7 @@ export default function InventoryPage() {
 
   return (
     <div className="w-screen p-5 flex flex-col gap-7 myContainer mx-auto">
+      {<AddCategoryModal />}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-xl text-primary font-medium">مدیرت کالا ها</h1>
@@ -28,7 +36,10 @@ export default function InventoryPage() {
             <button className="py-1 px-4 text-[#fff] bg-primary rounded-md">
               افزودن کالا
             </button>
-            <button className="py-1 px-4 text-[#fff] bg-primary rounded-md">
+            <button
+              onClick={() => setOpenAddCategory(true)}
+              className="py-1 px-4 text-[#fff] bg-primary rounded-md"
+            >
               افزودن دسته بندی
             </button>
             <button className="py-1 px-4 text-[#fff] bg-primary rounded-md">
