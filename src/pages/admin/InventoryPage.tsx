@@ -1,4 +1,4 @@
-import DropDown from "../../components/deropDown";
+import DropDown from "../../components/dropDown";
 import InventoryTable from "../../components/tabls/inventory/InventoryTable";
 import { useGetProduct } from "../../hooks/products/useGetProducts";
 
