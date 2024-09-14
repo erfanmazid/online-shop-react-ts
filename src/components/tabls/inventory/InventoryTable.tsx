@@ -58,9 +58,11 @@ export default function InventoryTable({ producs, pageSize, total }: any) {
           ))}
         </tbody>
         <tfoot>
-          <div className="p-3">
-            <Pagiantion pageSize={pageSize} total={total} />
-          </div>
+          <tr>
+            <td className="p-5">
+              <Pagiantion pageSize={pageSize} total={total} />
+            </td>
+          </tr>
         </tfoot>
       </table>
     </div>
