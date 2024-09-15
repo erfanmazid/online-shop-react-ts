@@ -6,9 +6,6 @@ const baseURL: string = "http://localhost:8000";
 
 const httpRequest = axios.create({
   baseURL,
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
 httpRequest.interceptors.request.use((config) => {
