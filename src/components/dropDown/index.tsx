@@ -5,9 +5,16 @@ import { ModalsContext } from "../../contexts/modalsContext";
 import { useContext } from "react";
 
 const DropDown: React.FC = () => {
-  const { setOpenAddCategory, openAddCategory } = useContext(ModalsContext) as {
+  const {
+    setOpenAddCategory,
+    openAddCategory,
+    openAddSubCategory,
+    setOpenAddSubCategory,
+  } = useContext(ModalsContext) as {
     setOpenAddCategory: (value: boolean) => void;
     openAddCategory: boolean;
+    setOpenAddSubCategory: (value: boolean) => void;
+    openAddSubCategory: boolean;
   };
   const items: MenuProps["items"] = [
     {
@@ -28,6 +35,7 @@ const DropDown: React.FC = () => {
     {
       label: "افزودن زیر دسته بندی",
       key: "2",
+      onClick: () => setOpenAddSubCategory(!openAddSubCategory),
     },
   ];
 
