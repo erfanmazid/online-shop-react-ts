@@ -6,7 +6,7 @@ export const useGetProduct = (query: string) => {
     queryKey: ["products"],
     queryFn: async () =>
       query === ""
-        ? await httpRequest.get(`/api/products`)
+        ? await httpRequest.get(`/api/products?page=1&limit=4`)
         : await httpRequest.get(`/api/products${query}`),
   });
 };
