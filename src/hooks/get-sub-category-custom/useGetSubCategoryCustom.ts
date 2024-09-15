@@ -12,5 +12,6 @@ export const useGetSubCategoryCustom = ({
     queryKey: ["getSubCategoryCustom", key],
     queryFn: async () =>
       await httpRequest.get(`/api/subcategories?limit=1000&category=${params}`),
+    enabled: !!key,
   });
 };
