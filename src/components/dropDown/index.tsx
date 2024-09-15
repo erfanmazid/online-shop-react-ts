@@ -10,16 +10,21 @@ const DropDown: React.FC = () => {
     openAddCategory,
     openAddSubCategory,
     setOpenAddSubCategory,
+    openAddProduct,
+    setOpenAddProduct,
   } = useContext(ModalsContext) as {
     setOpenAddCategory: (value: boolean) => void;
     openAddCategory: boolean;
     setOpenAddSubCategory: (value: boolean) => void;
     openAddSubCategory: boolean;
+    setOpenAddProduct: (value: boolean) => void;
+    openAddProduct: boolean;
   };
   const items: MenuProps["items"] = [
     {
       label: "افزودن کالا",
       key: "0",
+      onClick: () => setOpenAddProduct(!openAddProduct),
     },
     {
       type: "divider",
