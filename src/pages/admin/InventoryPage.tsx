@@ -7,6 +7,7 @@ import InventoryTable from "../../components/tabls/inventory/InventoryTable";
 import { ModalsContext } from "../../contexts/modalsContext";
 import { useGetProduct } from "../../hooks/products/useGetProducts";
 import CreateParams from "./params";
+import DeleteProductsModal from "../../components/modals/deleteProducts";
 
 export default function InventoryPage() {
   const params = CreateParams();
@@ -33,6 +34,7 @@ export default function InventoryPage() {
       {<AddCategoryModal />}
       {<AddSubCategoryModal />}
       {<AddProductModal />}
+      <DeleteProductsModal />
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-xl text-primary font-medium">مدیرت کالا ها</h1>

@@ -6,6 +6,8 @@ export const ModalsProvider = ({ children }: { children: React.ReactNode }) => {
   const [openAddCategory, setOpenAddCategory] = useState<boolean>(false);
   const [openAddSubCategory, setOpenAddSubCategory] = useState<boolean>(false);
   const [openAddProduct, setOpenAddProduct] = useState<boolean>(false);
+  const [openDeleteProduct, setOpenDeleteProduct] = useState<boolean>(false);
+  const [productId, setProductId] = useState<string | undefined>(undefined);
 
   return (
     <ModalsContext.Provider
@@ -16,6 +18,10 @@ export const ModalsProvider = ({ children }: { children: React.ReactNode }) => {
         openAddSubCategory,
         openAddProduct,
         setOpenAddProduct,
+        openDeleteProduct,
+        setOpenDeleteProduct,
+        productId,
+        setProductId,
       }}
     >
       {children}

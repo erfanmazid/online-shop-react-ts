@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { ModalsContext } from "../../../../contexts/modalsContext";
+
 interface products {
   _id: string;
   category: Category;
@@ -38,6 +41,17 @@ interface props {
 }
 
 export default function SingleInventory({ product, index }: props) {
+  const { setOpenDeleteProduct, setProductId } = useContext(ModalsContext) as {
+    openDeleteProduct: boolean;
+    setOpenDeleteProduct: (value: boolean) => void;
+    setProductId: (value: string) => void;
+  };
+
+  function handelDelete() {
+    setProductId(product._id);
+    setOpenDeleteProduct(true);
+  }
+
   return (
     <tr className={index % 2 === 0 ? "border-b bg-tint-1" : "border-b"}>
       <td className=" p-3 mx-auto">
@@ -58,7 +72,10 @@ export default function SingleInventory({ product, index }: props) {
           <button className="bg-warning-light py-1 rounded-lg text-[#fff] px-4">
             ویرایش
           </button>
-          <button className="bg-error-light py-1 rounded-lg text-[#fff] px-4">
+          <button
+            className="bg-error-light py-1 rounded-lg text-[#fff] px-4"
+            onClick={handelDelete}
+          >
             حذف
           </button>
         </div>
