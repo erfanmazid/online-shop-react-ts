@@ -10,7 +10,20 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 interface CustomCKEditorProps {
   name: string;
-  control: Control<FieldValues>;
+  controls: Control<
+    {
+      category: string;
+      subcategory: string;
+      name: string;
+      price: string;
+      quantity: string;
+      brand: string;
+      discount: string;
+      description: string;
+      thumbnail: undefined;
+    },
+    undefined
+  >;
   rules?:
     | Omit<
         RegisterOptions<FieldValues, string>,
@@ -21,13 +34,13 @@ interface CustomCKEditorProps {
 
 const CustomCKEditor: React.FC<CustomCKEditorProps> = ({
   name,
-  control,
+  controls,
   rules,
 }) => {
   return (
     <Controller
       name={name}
-      control={control}
+      control={controls}
       rules={rules}
       render={({ field: { onChange, value } }) => (
         <CKEditor
