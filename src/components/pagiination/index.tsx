@@ -5,7 +5,7 @@ interface props {
   pageSize: number;
   total: number;
 }
-export default function Pagiantion({ pageSize, total }: props) {
+export default function Pagiantion({ pageSize = 4, total }: props) {
   const [serchParams, setSearchParams] = useSearchParams();
 
   const page: string | null = serchParams.get("page");
