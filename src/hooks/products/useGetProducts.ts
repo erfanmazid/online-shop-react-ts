@@ -3,7 +3,7 @@ import httpRequest from "../../services/http-request";
 
 export const useGetProduct = (query: string) => {
   return useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", query],
     queryFn: async () =>
       query === ""
         ? await httpRequest.get(`/api/products?page=1&limit=4`)
