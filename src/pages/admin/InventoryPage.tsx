@@ -1,14 +1,16 @@
 import { useContext } from "react";
 import DropDown from "../../components/dropDown";
 import AddCategoryModal from "../../components/modals/addCategory";
+import AddProductModal from "../../components/modals/addProduct";
+import AddSubCategoryModal from "../../components/modals/addSubCategory";
 import InventoryTable from "../../components/tabls/inventory/InventoryTable";
 import { ModalsContext } from "../../contexts/modalsContext";
 import { useGetProduct } from "../../hooks/products/useGetProducts";
-import AddSubCategoryModal from "../../components/modals/addSubCategory";
-import AddProductModal from "../../components/modals/addProduct";
+import CreateParams from "./params";
 
 export default function InventoryPage() {
-  const { data, isLoading } = useGetProduct("");
+  const params = CreateParams();
+  const { data, isLoading } = useGetProduct(params);
 
   const { setOpenAddCategory, setOpenAddSubCategory, setOpenAddProduct } =
     useContext(ModalsContext) as {
