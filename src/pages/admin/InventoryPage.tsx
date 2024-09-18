@@ -3,16 +3,11 @@ import DropDown from "../../components/dropDown";
 import AddCategoryModal from "../../components/modals/addCategory";
 import AddProductModal from "../../components/modals/addProduct";
 import AddSubCategoryModal from "../../components/modals/addSubCategory";
+import DeleteProductsModal from "../../components/modals/deleteProducts";
 import InventoryTable from "../../components/tabls/inventory/InventoryTable";
 import { ModalsContext } from "../../contexts/modalsContext";
-import { useGetProduct } from "../../hooks/products/useGetProducts";
-import CreateParams from "./params";
-import DeleteProductsModal from "../../components/modals/deleteProducts";
 
 export default function InventoryPage() {
-  const params = CreateParams();
-  const { data, isLoading } = useGetProduct(params);
-
   const { setOpenAddCategory, setOpenAddSubCategory, setOpenAddProduct } =
     useContext(ModalsContext) as {
       setOpenAddCategory: (value: boolean) => void;
@@ -20,17 +15,8 @@ export default function InventoryPage() {
       setOpenAddProduct: (value: boolean) => void;
     };
 
-  if (isLoading) {
-    return (
-      <div className=" text-center justify-center items-center flex gap-4 myContainer">
-        <h1 className="text-3xl font-bold">در حال بارگزاری</h1>
-        <div className="w-7 h-7 border-l-2 border-r-2 border-t-2 rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
   return (
-    <div className="w-screen p-5 flex flex-col gap-7 myContainer mx-auto">
+    <div className="w-screen p-5 flex flex-col gap-7 myContainer">
       {<AddCategoryModal />}
       {<AddSubCategoryModal />}
       {<AddProductModal />}
@@ -65,12 +51,8 @@ export default function InventoryPage() {
           </div>
         </div>
       </div>
-      <div className="flex w-full justify-center ">
-        <InventoryTable
-          producs={data?.data.data.products}
-          pageSize={data?.data.per_page}
-          total={data?.data.total}
-        />
+      <div className="w-full">
+        <InventoryTable />
       </div>
     </div>
   );

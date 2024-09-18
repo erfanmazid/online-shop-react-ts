@@ -1,70 +1,101 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { TableProps } from "antd";
+import { Space, Table } from "antd";
+import { useGetProduct } from "../../../hooks/products/useGetProducts";
 import Pagiantion from "../../pagiination";
-import SingleInventory from "./single-inventory/SingleInventory";
+import CreateParams from "../../../pages/admin/params";
+import { useContext } from "react";
+import { ModalsContext } from "../../../contexts/modalsContext";
 
-interface products {
-  _id: string;
-  category: Category;
-  subcategory: Subcategory;
-  name: string;
-  price: number;
-  quantity: number;
-  brand: string;
-  discount: number;
-  description: string;
-  thumbnail: string;
-  images?: string[] | null;
-  slugname: string;
-}
-
-interface Category {
-  _id: string;
-  name: string;
-  icon: string;
-  createdAt: string;
-  updatedAt: string;
-  slugname: string;
-  __v: number;
-}
-interface Subcategory {
-  _id: string;
+interface DataType {
+  key: string;
+  product: string;
   category: string;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-  slugname: string;
-  __v: number;
+  image: string;
 }
 
-export default function InventoryTable({ producs, pageSize, total }: any) {
+const InventoryTable: React.FC = () => {
+  const params = CreateParams();
+  const { data: product } = useGetProduct(params);
+  console.log(product?.data);
+  const arr: DataType[] = [];
+
+  for (let i = 0; i < product?.data.data.products?.length; i++) {
+    arr.push({
+      key: product?.data?.data.products[i]?._id,
+      product: product?.data?.data.products[i]?.name,
+      category:
+        product?.data?.data.products[i]?.category.name +
+        " / " +
+        product?.data?.data.products[i]?.subcategory.name,
+      image: product?.data?.data.products[i]?.images[0],
+    });
+  }
+
+  const { setOpenDeleteProduct, setProductId } = useContext(ModalsContext) as {
+    openDeleteProduct: boolean;
+    setOpenDeleteProduct: (value: boolean) => void;
+    setProductId: (value: string) => void;
+  };
+
+  function handelDelete(_id: string) {
+    setProductId(_id);
+    setOpenDeleteProduct(true);
+  }
+
+  const columns: TableProps<DataType>["columns"] = [
+    {
+      title: "تصویر",
+      dataIndex: "image",
+      key: "image",
+      render: (image) => <img src={`${image}`} alt="thumbnail" />,
+    },
+    {
+      title: "نام کالا",
+      dataIndex: "product",
+      key: "product",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "دسته بندی",
+      dataIndex: "category",
+      key: "category",
+    },
+    {
+      title: "عملیات",
+      dataIndex: "actions",
+      key: "actions",
+      render: (_, record) => (
+        <Space size="middle" className="flex flex-col md:flex-row">
+          <button className="bg-warning-light py-1 rounded-lg text-[#fff] px-4">
+            ویرایش
+          </button>
+          <button
+            className="bg-error-light py-1 rounded-lg text-[#fff] px-4"
+            onClick={() => handelDelete(record.key)}
+          >
+            حذف
+          </button>
+        </Space>
+      ),
+    },
+  ];
+
+  const data: DataType[] = arr;
+
   return (
-    <div className="overflow-x-auto overflow-y-auto max-h-[800px] ">
-      <table className="w-max border border-collapse rounded-lg">
-        <thead>
-          <tr className="border-b-2 bg-tint-5 border-black">
-            <th className="p-3">تصویر</th>
-            <th className="p-3">نام کالا</th>
-            <th className="p-3">دسته بندی</th>
-            <th className="p-3">عملیات</th>
-          </tr>
-        </thead>
-        <tbody>
-          {producs?.map((product: products, index: number) => (
-            <SingleInventory
-              product={product}
-              index={index}
-              key={product._id}
-            />
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td className="p-5">
-              <Pagiantion pageSize={pageSize} total={total} />
-            </td>
-          </tr>
-        </tfoot>
-      </table>
+    <div className="flex flex-col gap-5 z-0">
+      <Table
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+        className="z-0"
+      />
+      <Pagiantion
+        pageSize={product?.data.per_page}
+        total={product?.data.total}
+      />
     </div>
   );
-}
+};
+
+export default InventoryTable;
