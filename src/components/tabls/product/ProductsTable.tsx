@@ -37,6 +37,7 @@ const ProductTable: React.FC = () => {
       title: "قیمت",
       dataIndex: "price",
       key: "price",
+      sorter: (a, b) => a.price - b.price,
     },
     {
       title: "موجودی",
