@@ -56,9 +56,9 @@ export default function SingleInventory({ product, index }: props) {
     <tr className={index % 2 === 0 ? "border-b bg-tint-1" : "border-b"}>
       <td className=" p-3 mx-auto">
         <img
-          src={product.thumbnail}
+          src={`http://localhost:8000/images/products/thumbnails/${product.thumbnail}`}
           className="w-24 mx-auto mix-blend-multiply"
-          alt=""
+          alt={product.name}
         />
       </td>
       <td className=" p-3">
