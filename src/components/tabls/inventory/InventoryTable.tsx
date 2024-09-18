@@ -1,10 +1,16 @@
-import type { TableProps } from "antd";
+import type { TablePaginationConfig, TableProps } from "antd";
 import { Space, Table } from "antd";
 import { useGetProduct } from "../../../hooks/products/useGetProducts";
 import Pagiantion from "../../pagiination";
 import CreateParams from "../../../pages/admin/params";
 import { useContext } from "react";
 import { ModalsContext } from "../../../contexts/modalsContext";
+import {
+  FilterValue,
+  SorterResult,
+  TableCurrentDataSource,
+} from "antd/es/table/interface";
+import { useSearchParams } from "react-router-dom";
 
 interface DataType {
   key: string;
@@ -15,8 +21,10 @@ interface DataType {
 
 const InventoryTable: React.FC = () => {
   const params = CreateParams();
+  const [serchParams, setSearchParams] = useSearchParams();
+
   const { data: product } = useGetProduct(params);
-  console.log(product?.data);
+  // console.log(product?.data);
   const arr: DataType[] = [];
 
   for (let i = 0; i < product?.data.data.products?.length; i++) {
@@ -42,6 +50,31 @@ const InventoryTable: React.FC = () => {
     setOpenDeleteProduct(true);
   }
 
+  const handleChange = (
+    _pagination: TablePaginationConfig,
+    _filters: Record<string, FilterValue | null>,
+    sorter: SorterResult<DataType> | SorterResult<DataType>[],
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _extra: TableCurrentDataSource<DataType>
+  ) => {
+    if (Array.isArray(sorter)) {
+      console.log(sorter.map((s) => s.order));
+    } else {
+      console.log(sorter.order);
+
+      if (sorter.order === undefined) {
+        serchParams.delete("sort");
+        setSearchParams(serchParams);
+      } else if (sorter.order === "ascend") {
+        serchParams.set("sort", "price");
+        setSearchParams(serchParams);
+      } else if (sorter.order === "descend") {
+        serchParams.set("sort", "-price");
+        setSearchParams(serchParams);
+      }
+    }
+  };
+
   const columns: TableProps<DataType>["columns"] = [
     {
       title: "تصویر",
@@ -59,6 +92,8 @@ const InventoryTable: React.FC = () => {
       title: "دسته بندی",
       dataIndex: "category",
       key: "category",
+      sorter: true,
+      sortDirections: ["ascend", "descend"],
     },
     {
       title: "عملیات",
@@ -89,6 +124,7 @@ const InventoryTable: React.FC = () => {
         dataSource={data}
         pagination={false}
         className="z-0"
+        onChange={handleChange}
       />
       <Pagiantion
         pageSize={product?.data.per_page}

@@ -6,10 +6,16 @@ const CreateParams = () => {
   const pageParams: string | null = searchParams.get("page");
   const limitParams: string | null = searchParams.get("limit");
   const statusParams: string | null = searchParams.get("status");
+  const sortParams: string | null = searchParams.get("sort");
   const [params, setParams] = useState<string>("");
 
   useEffect(() => {
-    if (pageParams !== null && limitParams !== null && statusParams === null) {
+    if (
+      pageParams !== null &&
+      limitParams !== null &&
+      statusParams === null &&
+      sortParams === null
+    ) {
       setParams(`?page=${pageParams}&limit=${limitParams}`);
     } else if (
       pageParams !== null &&
@@ -51,12 +57,26 @@ const CreateParams = () => {
       } else {
         setParams(`?page=${pageParams}&limit=${limitParams}`);
       }
+    } else if (
+      pageParams === null &&
+      limitParams === null &&
+      statusParams === null &&
+      sortParams !== null
+    ) {
+      setParams(`?page=1&limit=4&sort=${sortParams}`);
+    } else if (
+      pageParams !== null &&
+      limitParams !== null &&
+      statusParams === null &&
+      sortParams !== null
+    ) {
+      setParams(`?page=${pageParams}&limit=${limitParams}&sort=${sortParams}`);
     } else {
       setParams(`?page=1&limit=4`);
     }
 
     return () => {};
-  }, [pageParams, limitParams, statusParams]);
+  }, [pageParams, limitParams, statusParams, sortParams]);
 
   return params;
 };
