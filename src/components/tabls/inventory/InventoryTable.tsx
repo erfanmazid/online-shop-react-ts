@@ -60,8 +60,6 @@ const InventoryTable: React.FC = () => {
     if (Array.isArray(sorter)) {
       console.log(sorter.map((s) => s.order));
     } else {
-      console.log(sorter.order);
-
       if (sorter.order === undefined) {
         serchParams.delete("sort");
         setSearchParams(serchParams);
