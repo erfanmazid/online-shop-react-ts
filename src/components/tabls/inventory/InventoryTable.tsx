@@ -24,7 +24,6 @@ const InventoryTable: React.FC = () => {
   const [serchParams, setSearchParams] = useSearchParams();
 
   const { data: product } = useGetProduct(params);
-  // console.log(product?.data);
   const arr: DataType[] = [];
 
   for (let i = 0; i < product?.data.data.products?.length; i++) {
@@ -64,10 +63,10 @@ const InventoryTable: React.FC = () => {
         serchParams.delete("sort");
         setSearchParams(serchParams);
       } else if (sorter.order === "ascend") {
-        serchParams.set("sort", "price");
+        serchParams.set("sort", "category");
         setSearchParams(serchParams);
       } else if (sorter.order === "descend") {
-        serchParams.set("sort", "-price");
+        serchParams.set("sort", "-category");
         setSearchParams(serchParams);
       }
     }
@@ -78,7 +77,13 @@ const InventoryTable: React.FC = () => {
       title: "تصویر",
       dataIndex: "image",
       key: "image",
-      render: (image) => <img src={`${image}`} alt="thumbnail" />,
+      render: (image) => (
+        <img
+          src={`http://${image}`}
+          alt="thumbnail"
+          className="w-20 mix-blend-multiply"
+        />
+      ),
     },
     {
       title: "نام کالا",

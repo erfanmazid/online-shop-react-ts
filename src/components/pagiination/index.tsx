@@ -5,7 +5,7 @@ interface props {
   pageSize: number;
   total: number;
 }
-export default function Pagiantion({ pageSize = 4, total }: props) {
+export default function Pagiantion({ pageSize, total }: props) {
   const [serchParams, setSearchParams] = useSearchParams();
 
   const page: string | null = serchParams.get("page");
@@ -16,7 +16,7 @@ export default function Pagiantion({ pageSize = 4, total }: props) {
       total={total}
       showSizeChanger
       defaultCurrent={1}
-      defaultPageSize={pageSize}
+      defaultPageSize={pageSize || Number(serchParams.get("limit")) || 4}
       current={Number(curr)}
       pageSizeOptions={[4, 8, 16]}
       locale={{ items_per_page: "/ کالا هر صفحه " }}
