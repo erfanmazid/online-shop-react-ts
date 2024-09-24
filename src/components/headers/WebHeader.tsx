@@ -73,7 +73,7 @@ export default function WebHeader() {
             </li>
             <li>
               <NavLink
-                to="/products/category/all"
+                to="/products/all"
                 className={({ isActive }) =>
                   isActive
                     ? "text-primary pb-2 border-b border-primary duration-300"

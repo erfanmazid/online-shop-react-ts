@@ -48,7 +48,7 @@ export default function MobileNav({ status, setNav }: props) {
           <li>
             <NavLink
               onClick={handelClose}
-              to="/products/category/all"
+              to="/products/all"
               className={({ isActive }) =>
                 isActive
                   ? "text-primary pb-2 border-b border-primary duration-300"

@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { AdminLayout, ProductLayout, WebLayout } from "../components/layouts";
+import { AdminLayout, WebLayout } from "../components/layouts";
 import {
   AboutUsPage,
   CartPage,
@@ -11,11 +11,11 @@ import {
   PaymentResultPage,
   ProductCategoryPage,
   ProductsPage,
+  ShippingPage,
   SingleProductPage,
   UserLoginPage,
   UserProfilePage,
   UserSignupPage,
-  ShippingPage,
 } from "../pages";
 
 const router = createBrowserRouter([
@@ -56,6 +56,10 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <ContactUsPage />,
       },
+      {
+        path: "/products/:category",
+        element: <ProductCategoryPage />,
+      },
     ],
   },
   {
@@ -80,15 +84,15 @@ const router = createBrowserRouter([
     element: <UserLoginPage />,
   },
   { path: "/signup", element: <UserSignupPage /> },
-  {
-    element: <ProductLayout />,
-    children: [
-      {
-        path: "/products/category/:category",
-        element: <ProductCategoryPage />,
-      },
-    ],
-  },
+  // {
+  //   element: <ProductLayout />,
+  //   children: [
+  //     {
+  //       path: "/products/:category",
+  //       element: <ProductCategoryPage />,
+  //     },
+  //   ],
+  // },
 ]);
 
 export const AppRouter = () => {
