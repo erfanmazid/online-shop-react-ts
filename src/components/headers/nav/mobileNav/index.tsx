@@ -14,8 +14,8 @@ export default function MobileNav({ status, setNav }: props) {
     <div
       className={
         status
-          ? "h-screen w-screen bg-gray-6 bg-opacity-50 absolute right-0 top-0 duration-500 md:hidden"
-          : "h-screen w-screen bg-gray-6 bg-opacity-50 absolute -top-0 -right-[769px] duration-500 md:hidden "
+          ? "h-screen w-screen bg-gray-6 bg-opacity-50 absolute right-0 top-0 duration-500 md:hidden z-50"
+          : "h-screen w-screen bg-gray-6 bg-opacity-50 absolute -top-0 -right-[769px] duration-500 md:hidden z-50"
       }
       onClick={handelClose}
     >
