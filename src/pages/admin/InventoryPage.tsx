@@ -6,6 +6,7 @@ import AddSubCategoryModal from "../../components/modals/addSubCategory";
 import DeleteProductsModal from "../../components/modals/deleteProducts";
 import InventoryTable from "../../components/tabls/inventory/InventoryTable";
 import { ModalsContext } from "../../contexts/modalsContext";
+import EditProductModal from "../../components/modals/editProduct";
 
 export default function InventoryPage() {
   const { setOpenAddCategory, setOpenAddSubCategory, setOpenAddProduct } =
@@ -20,6 +21,7 @@ export default function InventoryPage() {
       {<AddCategoryModal />}
       {<AddSubCategoryModal />}
       {<AddProductModal />}
+      {<EditProductModal />}
       <DeleteProductsModal />
       <div className="flex justify-between items-center">
         <div>
