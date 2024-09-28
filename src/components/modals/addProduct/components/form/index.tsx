@@ -75,7 +75,8 @@ export default function ProducrtsForm() {
     formData.append("description", data.description);
     formData.append("price", data.price.toString());
     formData.append("quantity", data.quantity.toString());
-    // formData.append("thumbnail", data.thumbnail);
+    formData.append("thumbnail", data.thumbnail[0]);
+    formData.append("images", data.thumbnail[0]);
     console.log(formData);
 
     mutate(formData, {
