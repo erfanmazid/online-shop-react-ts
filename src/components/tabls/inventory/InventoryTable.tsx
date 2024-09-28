@@ -38,15 +38,28 @@ const InventoryTable: React.FC = () => {
     });
   }
 
-  const { setOpenDeleteProduct, setProductId } = useContext(ModalsContext) as {
+  const {
+    setOpenDeleteProduct,
+    setProductId,
+    setOpenEditProduct,
+    setEditProductId,
+  } = useContext(ModalsContext) as {
     openDeleteProduct: boolean;
     setOpenDeleteProduct: (value: boolean) => void;
+    setOpenEditProduct: (value: boolean) => void;
     setProductId: (value: string) => void;
+    setEditProductId: (value: string) => void;
   };
 
   function handelDelete(_id: string) {
     setProductId(_id);
     setOpenDeleteProduct(true);
+  }
+
+  function handelEdit(_id: string) {
+    console.log(_id);
+    setEditProductId(_id);
+    setOpenEditProduct(true);
   }
 
   const handleChange = (
@@ -104,7 +117,10 @@ const InventoryTable: React.FC = () => {
       key: "actions",
       render: (_, record) => (
         <Space size="middle" className="flex flex-col md:flex-row">
-          <button className="bg-warning-light py-1 rounded-lg text-[#fff] px-4">
+          <button
+            className="bg-warning-light py-1 rounded-lg text-[#fff] px-4"
+            onClick={() => handelEdit(record.key)}
+          >
             ویرایش
           </button>
           <button
