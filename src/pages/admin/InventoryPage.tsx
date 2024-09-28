@@ -9,20 +9,33 @@ import { ModalsContext } from "../../contexts/modalsContext";
 import EditProductModal from "../../components/modals/editProduct";
 
 export default function InventoryPage() {
-  const { setOpenAddCategory, setOpenAddSubCategory, setOpenAddProduct } =
-    useContext(ModalsContext) as {
-      setOpenAddCategory: (value: boolean) => void;
-      setOpenAddSubCategory: (value: boolean) => void;
-      setOpenAddProduct: (value: boolean) => void;
-    };
+  const {
+    setOpenAddCategory,
+    setOpenAddSubCategory,
+    setOpenAddProduct,
+    openAddCategory,
+    openAddSubCategory,
+    openAddProduct,
+    openEditProduct,
+    openDeleteProduct,
+  } = useContext(ModalsContext) as {
+    setOpenAddCategory: (value: boolean) => void;
+    setOpenAddSubCategory: (value: boolean) => void;
+    setOpenAddProduct: (value: boolean) => void;
+    openAddCategory: boolean;
+    openAddSubCategory: boolean;
+    openAddProduct: boolean;
+    openEditProduct: boolean;
+    openDeleteProduct: boolean;
+  };
 
   return (
     <div className="w-screen p-5 flex flex-col gap-7 myContainer">
-      {<AddCategoryModal />}
-      {<AddSubCategoryModal />}
-      {<AddProductModal />}
-      {<EditProductModal />}
-      <DeleteProductsModal />
+      {openAddCategory && <AddCategoryModal />}
+      {openAddSubCategory && <AddSubCategoryModal />}
+      {openAddProduct && <AddProductModal />}
+      {openEditProduct && <EditProductModal />}
+      {openDeleteProduct && <DeleteProductsModal />}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-xl text-primary font-medium">مدیرت کالا ها</h1>
