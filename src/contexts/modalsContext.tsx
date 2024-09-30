@@ -8,7 +8,9 @@ export const ModalsProvider = ({ children }: { children: React.ReactNode }) => {
   const [openAddProduct, setOpenAddProduct] = useState<boolean>(false);
   const [openDeleteProduct, setOpenDeleteProduct] = useState<boolean>(false);
   const [openEditProduct, setOpenEditProduct] = useState<boolean>(false);
+  const [openShowOrder, setOpenShowOrder] = useState<boolean>(false);
   const [productId, setProductId] = useState<string | undefined>(undefined);
+  const [orderId, setOrderId] = useState<string | undefined>(undefined);
   const [editProductId, setEditProductId] = useState<string | undefined>(
     undefined
   );
@@ -30,6 +32,10 @@ export const ModalsProvider = ({ children }: { children: React.ReactNode }) => {
         setOpenEditProduct,
         editProductId,
         setEditProductId,
+        openShowOrder,
+        setOpenShowOrder,
+        orderId,
+        setOrderId,
       }}
     >
       {children}
