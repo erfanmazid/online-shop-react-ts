@@ -33,11 +33,11 @@ export default function DeleteProductsModal() {
     <div
       className={
         openDeleteProduct
-          ? "w-screen h-screen fixed top-0 left-0 bg-gray-8 bg-opacity-60 flex justify-center items-center z-50"
+          ? "w-screen h-screen fixed top-0 left-0 right-0 bottom-0 bg-gray-8 bg-opacity-60 flex justify-center items-center z-50"
           : "hidden"
       }
     >
-      <div className="w-3/4 h-2/4 bg-[white] rounded-md p-5 flex flex-col gap-5 relative">
+      <div className="w-3/4 h-2/5 bg-[white] rounded-md p-5 flex flex-col gap-5 relative md:w-2/6 md:h-1/5">
         <div className="flex-1 flex justify-center items-center flex-col gap-7">
           <h2 className="text-lg font-semibold text-primary text-center">
             از حذف محصول اطمینان دارید؟
