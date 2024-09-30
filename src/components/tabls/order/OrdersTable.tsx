@@ -10,6 +10,8 @@ import {
   TableCurrentDataSource,
 } from "antd/es/table/interface";
 import { useSearchParams } from "react-router-dom";
+import { ModalsContext } from "../../../contexts/modalsContext";
+import { useContext } from "react";
 
 interface DataType {
   key: string;
@@ -63,6 +65,19 @@ const OrdersTable: React.FC = () => {
     }
   };
 
+  const { openShowOrder, setOpenShowOrder, setOrderId } = useContext(
+    ModalsContext
+  ) as {
+    openShowOrder: boolean;
+    setOpenShowOrder: (value: boolean) => void;
+    setOrderId: (value: string) => void;
+  };
+
+  function handelOpenModal(id: string) {
+    setOrderId(id);
+    setOpenShowOrder(!openShowOrder);
+  }
+
   const columns: TableProps<DataType>["columns"] = [
     {
       title: "نام کاربر",
@@ -86,7 +101,14 @@ const OrdersTable: React.FC = () => {
       title: "برسی سفارش",
       dataIndex: "status",
       key: "status",
-      render: (text) => <a>{text}</a>,
+      render: (text, record) => (
+        <p
+          onClick={() => handelOpenModal(record.key)}
+          className="cursor-pointer"
+        >
+          {text}
+        </p>
+      ),
     },
   ];
 
