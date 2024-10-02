@@ -1,25 +1,20 @@
 import { Breadcrumb, ConfigProvider } from "antd";
 import { Link } from "react-router-dom";
 
-const BreadcrumbComponent: React.FC = () => {
+const BreadcrumbComponent = ({
+  value,
+}: {
+  value: { title: string; link: string }[];
+}) => {
+  const items = value?.map((item) => {
+    return {
+      title: <Link to={item.link}>{item.title}</Link>,
+    };
+  });
+
   return (
     <ConfigProvider direction="rtl">
-      <Breadcrumb
-        items={[
-          {
-            title: <Link to={"/"}>خانه</Link>,
-          },
-          {
-            title: <a href="">مرکز برنامه</a>,
-          },
-          {
-            title: <a href="">لیست برنامه‌ها</a>,
-          },
-          {
-            title: "یک برنامه",
-          },
-        ]}
-      />
+      <Breadcrumb items={items} />
     </ConfigProvider>
   );
 };
