@@ -1,0 +1,19 @@
+.custom-radio .ant-radio-checked .ant-radio-inner {
+  border-color: #417f56; /* رنگ حاشیه دکمه انتخاب‌شده */
+}
+
+.custom-radio .ant-radio-checked .ant-radio-inner::after {
+  background-color: #417f56; /* تغییر رنگ دایره داخلی */
+}
+
+.custom-radio .ant-radio:hover .ant-radio-inner {
+  border-color: #7cbc91; /* تغییر رنگ حاشیه هنگام هاور */
+}
+
+.custom-radio .ant-radio-checked .ant-radio-inner {
+  background-color: transparent; /* حذف رنگ پس‌زمینه آبی */
+}
+
+.custom-radio .ant-radio-input:focus + .ant-radio-inner {
+  box-shadow: 0 0 0 2px #417f5646; /* تغییر رنگ حلقه فوکوس */
+}
