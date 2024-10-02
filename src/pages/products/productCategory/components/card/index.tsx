@@ -1,8 +1,9 @@
 import { Card } from "antd";
+import { ProductsEntity } from "../../../../../types/products";
 
 const { Meta } = Card;
 
-const ProductCart: React.FC = () => {
+const ProductCart = ({ item }: { item: ProductsEntity }) => {
   return (
     <Card
       hoverable
@@ -11,14 +12,18 @@ const ProductCart: React.FC = () => {
       cover={
         <img
           alt="example"
-          src="http://localhost:8000/images/products/images/products-66fbc3b9345a2a5d5d05b3f0-1727775673040-1.webp"
+          src={`http://${item.images?.[0]}`}
           className="h-40 object-contain pt-3"
         />
       }
     >
       <Meta
-        title={<span className="text-lg text-primary">jsj</span>}
-        description="www.instagram.com"
+        title={<span className="text-[16px]">{item.name}</span>}
+        description={
+          <p className="text-lg font-bold text-tint-6">
+            {item.price.toLocaleString("fa-IR")} تومان
+          </p>
+        }
       />
     </Card>
   );

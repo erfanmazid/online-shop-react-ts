@@ -97,7 +97,7 @@ const MenuComponent: React.FC = () => {
     <Menu
       onClick={onClick}
       style={{ width: 190 }}
-      defaultSelectedKeys={["1"]}
+      defaultSelectedKeys={[serchParams.get("category") || "all"]}
       defaultOpenKeys={["sub1"]}
       mode="inline"
       items={items}
