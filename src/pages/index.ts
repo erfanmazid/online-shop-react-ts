@@ -11,5 +11,5 @@ export { default as NotFoundPage } from "./notFound";
 export { default as ContactUsPage } from "./contact";
 export { default as HomePage } from "./home";
 export { default as PaymentResultPage } from "./payment";
-export { default as ProductCategoryPage } from "./products/ProductCategoryPage";
-export { default as SingleProductPage } from "./products/SingleProductPage";
+export { default as ProductCategoryPage } from "./products/productCategory/ProductCategoryPage";
+export { default as SingleProductPage } from "./products/singleProduct/SingleProductPage";
