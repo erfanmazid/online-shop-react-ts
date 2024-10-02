@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
+import ProductCart from "../../../../../../components/card";
 import { ProductsEntity } from "../../../../../../types/products";
-import SingleProductCart from "../singlecart";
 
 export default function CategoryItemsComponents({
   data,
@@ -18,10 +18,10 @@ export default function CategoryItemsComponents({
           {title}
         </h1>
       </Link>
-      <div className="w-full overflow-x-auto h-52 p-1 flex gap-3">
+      <div className="w-full overflow-x-auto p-1 flex gap-3">
         <div className="flex gap-x-3">
           {data?.map((item) => {
-            return <SingleProductCart key={item._id} item={item} />;
+            return <ProductCart key={item._id} item={item} />;
           })}
         </div>
       </div>
