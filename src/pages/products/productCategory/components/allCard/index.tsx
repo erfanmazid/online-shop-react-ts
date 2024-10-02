@@ -11,8 +11,6 @@ export default function AllCard() {
   if (isLoading) {
     {
       arr.map((item) => {
-        console.log(item);
-
         return <Skeleton key={item} />;
       });
     }
