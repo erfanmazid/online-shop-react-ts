@@ -2,7 +2,7 @@ import { Skeleton } from "antd";
 import { useGetProduct } from "../../../../../hooks/products/useGetProducts";
 import { ProductsEntity } from "../../../../../types/products";
 import ProductsParamsGenerator from "../../params";
-import ProductCart from "../card";
+import ProductCart from "../../../../../components/card";
 
 export default function AllCard() {
   const param = ProductsParamsGenerator();
