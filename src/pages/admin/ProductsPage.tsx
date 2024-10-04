@@ -41,7 +41,8 @@ export default function ProductsPage() {
   const handleCancel = () => {
     setUpdatedRows([]); // یا هر چیزی که نیاز باشد
     setHasChanges(false); // تغییرات را لغو کن
-    setResetEditState(false); // ویرایش‌ها را لغو کن
+    setResetEditState(true); // ریست کردن وضعیت ویرایش
+    setTimeout(() => setResetEditState(false), 100); // بازگردانی وضعیت resetEditState به false
   };
 
   const onTableChange = (updatedRow: UpdatedRow) => {
