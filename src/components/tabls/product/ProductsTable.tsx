@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import type { TableProps } from "antd";
 import { Table } from "antd";
 import { useGetProduct } from "../../../hooks/products/useGetProducts";
 import Pagiantion from "../../pagiination";
 import CreateParams from "../../../pages/admin/params";
+import { Link } from "react-router-dom";
 
 interface DataType {
   key: string;
@@ -42,7 +43,7 @@ const ProductTable: React.FC<ProductTableProps> = ({
   }
 
   // وقتی ذخیره موفقیت‌آمیز بود، وضعیت ویرایش ریست شود
-  React.useEffect(() => {
+  useEffect(() => {
     if (resetEditState) {
       setEditPrices({});
       setEditQuantities({});
@@ -70,7 +71,11 @@ const ProductTable: React.FC<ProductTableProps> = ({
       title: "کالا",
       dataIndex: "product",
       key: "product",
-      render: (text) => <a>{text}</a>,
+      render: (text, record) => (
+        <Link to={`/product/${record.key}`}>
+          <a>{text}</a>
+        </Link>
+      ),
     },
     {
       title: "قیمت",
