@@ -1,10 +1,12 @@
 import { Pagination } from "antd";
 import { useSearchParams } from "react-router-dom";
+import "./pagination.css"; // Import custom styles
 
 interface props {
   pageSize: number;
   total: number;
 }
+
 export default function Pagiantion({ pageSize, total }: props) {
   const [serchParams, setSearchParams] = useSearchParams();
 
@@ -27,6 +29,7 @@ export default function Pagiantion({ pageSize, total }: props) {
           return prev;
         });
       }}
+      className="custom-pagination"
     />
   );
 }

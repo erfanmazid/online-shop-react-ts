@@ -1,0 +1,16 @@
+.custom-pagination .ant-pagination-item-active a {
+  color: #ffffff; /* متن سفید برای صفحه انتخاب‌شده */
+}
+
+.custom-pagination .ant-pagination-item-active {
+  background-color: #417f56 !important; /* رنگ اصلی */
+  border-color: #417f56 !important; /* رنگ حاشیه */
+}
+
+.custom-pagination .ant-pagination-item-active:hover {
+  border-color: #417f56 !important; /* رنگ حاشیه ثابت */
+}
+
+.custom-pagination .ant-pagination-item-active:hover a {
+  color: #ffffff !important; /* رنگ متن به primary تغییر می‌کند در هاور */
+}
