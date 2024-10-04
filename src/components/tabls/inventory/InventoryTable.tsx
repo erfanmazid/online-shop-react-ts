@@ -10,7 +10,7 @@ import {
   SorterResult,
   TableCurrentDataSource,
 } from "antd/es/table/interface";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 interface DataType {
   key: string;
@@ -102,7 +102,11 @@ const InventoryTable: React.FC = () => {
       title: "نام کالا",
       dataIndex: "product",
       key: "product",
-      render: (text) => <a>{text}</a>,
+      render: (text, record) => (
+        <Link to={`/product/${record.key}`}>
+          <a>{text}</a>
+        </Link>
+      ),
     },
     {
       title: "دسته بندی",
