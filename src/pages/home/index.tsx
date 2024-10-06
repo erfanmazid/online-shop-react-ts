@@ -16,8 +16,8 @@ export default function HomePage() {
       {/* Categories Section */}
       <section className="myContainer flex flex-col gap-6">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl md:text-2xl font-semibold text-gray-800">
-            Categories
+          <h2 className="text-xl md:text-2xl font-semibold text-primary">
+            دسته بندی ها:
           </h2>
         </div>
         <ShowCategory data={category?.data.data.categories} />
