@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { CategoriesEntity } from "../../../../types/category";
 
 export default function ShowCategory({ data }: { data: CategoriesEntity[] }) {
-  console.log(data?.[6]);
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-2 w-full">
       {data?.map((cat) => (
