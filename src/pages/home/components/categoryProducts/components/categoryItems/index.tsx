@@ -12,18 +12,16 @@ export default function CategoryItemsComponents({
   id: string;
 }) {
   return (
-    <div>
+    <div className="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
       <Link to={`/products/all?category=${id}`}>
-        <h1 className="text-2xl text-primary p-1 cursor-pointer w-fit mb-2">
+        <h1 className="text-lg sm:text-xl font-bold text-primary cursor-pointer mb-4">
           {title}
         </h1>
       </Link>
-      <div className="w-full overflow-x-auto p-1 flex gap-3">
-        <div className="flex gap-x-3">
-          {data?.map((item) => {
-            return <ProductCart key={item._id} item={item} />;
-          })}
-        </div>
+      <div className="w-full overflow-x-auto flex gap-3 p-2">
+        {data?.map((item) => (
+          <ProductCart key={item._id} item={item} />
+        ))}
       </div>
     </div>
   );

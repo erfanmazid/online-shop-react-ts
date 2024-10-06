@@ -7,22 +7,30 @@ export default function HomePage() {
   const { data: category, isLoading } = useGetCategory();
 
   return (
-    <main className="flex w-full flex-col gap-10">
-      <CarouselComponent />
-      <div className="myContainer flex-col flex gap-5 w-full p-2 ">
-        <div className="flex justify-around w-full">
-          {<ShowCategory data={category?.data.data.categories} />}
+    <main className="flex w-full flex-col gap-6 p-4 bg-gray-50">
+      {/* Carousel section */}
+      <section className="relative rounded-lg shadow-lg overflow-hidden">
+        <CarouselComponent />
+      </section>
+
+      {/* Categories Section */}
+      <section className="myContainer flex flex-col gap-6">
+        <div className="flex justify-between items-center">
+          <h2 className="text-xl md:text-2xl font-semibold text-gray-800">
+            Categories
+          </h2>
         </div>
+        <ShowCategory data={category?.data.data.categories} />
+
+        {/* Featured Products */}
         <div>
-          {
-            <ShowCategoryProducts
-              data={category?.data.data.categories}
-              length={3}
-              status={isLoading}
-            />
-          }
+          <ShowCategoryProducts
+            data={category?.data.data.categories}
+            length={3}
+            isLoading={isLoading}
+          />
         </div>
-      </div>
+      </section>
     </main>
   );
 }
