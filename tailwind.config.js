@@ -3,7 +3,12 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: ["class", "class"],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        lg: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+        xl: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+      },
+    },
     colors: {
       primary: "#417F56",
       "tint-1": "#E5F2E9",
@@ -35,6 +40,12 @@ export default {
       "success-light": "#00BA88",
       warning: "#A9791C",
       "warning-light": "#F4B740",
+      gray: {
+        50: "#F9FAFB",
+        100: "#F3F4F6",
+        200: "#E5E7EB",
+        800: "#1F2937",
+      },
     },
     screens: {
       sm: "480px",
