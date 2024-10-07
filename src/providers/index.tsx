@@ -5,7 +5,8 @@ import { queryClient } from "../lib";
 import { ConfigProvider } from "antd";
 import { ModalsProvider } from "../contexts/modalsContext";
 import { Provider } from "react-redux";
-import { store } from "../store/store";
+import { persistor, store } from "../store/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 interface Props {
   children: ReactNode;
@@ -17,7 +18,11 @@ const Providers = ({ children }: Props) => {
       <QueryClientProvider client={queryClient}>
         <ConfigProvider direction="rtl">
           <ModalsProvider>
-            <Provider store={store}>{children}</Provider>
+            <Provider store={store}>
+              <PersistGate loading={null} persistor={persistor}>
+                {children}
+              </PersistGate>
+            </Provider>
           </ModalsProvider>
         </ConfigProvider>
       </QueryClientProvider>
