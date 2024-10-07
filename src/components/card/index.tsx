@@ -9,7 +9,7 @@ const ProductCart = ({ item }: { item: ProductsEntity }) => {
     <Link to={`/product/${item._id}`}>
       <Card
         hoverable
-        className="w-[90%] mx-auto cursor-pointer md:w-[100%] lg:w-[240px]"
+        className="mx-auto cursor-pointer w-[240px]"
         //   style={{ width: 240 }}
         cover={
           <img
