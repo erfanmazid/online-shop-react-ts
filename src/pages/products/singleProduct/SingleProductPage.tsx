@@ -1,10 +1,50 @@
+import { useDispatch } from "react-redux";
 import useGetProduct from "../../../hooks/get-product/useGetProduct";
 import BreadcrumbComponent from "../productCategory/components/breadcrumb";
 import ImageSlider from "./components/imageSlider";
+import { addToCart, CartItem, removeFromCart } from "../../../store/cartSlice";
+import { useCartSelector } from "../../../store/hooks";
+import { toast } from "react-toastify";
 
 export default function SingleProductPage() {
   const param = window.location.pathname.split("/").pop();
   const { data } = useGetProduct(param || "");
+
+  const itemId = data?.data.data.product._id;
+
+  const items = {
+    id: data?.data.data.product._id,
+    title: data?.data.data.product.name,
+    price: data?.data.data.product.price,
+  };
+
+  const dispatch = useDispatch();
+  const cartItems: CartItem[] = useCartSelector(
+    (state) =>
+      // state.cart.items.reduce((value, item) => value + item.quantity, 0)
+      state.cart.items
+  );
+
+  function handelAddToCart() {
+    dispatch(addToCart(items));
+  }
+
+  function handelPlus() {
+    const item = cartItems.find((item) => item.id === itemId);
+    if (item) {
+      if (data?.data.data.product.quantity > item.quantity) {
+        dispatch(addToCart(items));
+      } else {
+        toast.warning("موجودی کافی نیست");
+      }
+    } else {
+      console.log("error");
+    }
+  }
+
+  function handelMines() {
+    dispatch(removeFromCart(itemId));
+  }
 
   return (
     <div className="container mx-auto p-5 grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -62,9 +102,34 @@ export default function SingleProductPage() {
           <p className="text-lg">ارسال فوری</p>
           <img src="/image/car.svg" alt="Delivery" className="w-8 h-8" />
         </div>
-        <button className="w-full mt-6 py-4 text-lg font-bold bg-tint-3 hover:bg-tint-5 rounded-lg shadow-2xl transform hover:scale-105 transition-all duration-300">
-          افزودن به سبد خرید
-        </button>
+        <div className="w-full flex justify-center items-center mt-6">
+          {cartItems.find((item) => item.id === itemId) ? (
+            <div className="flex justify-center items-center w-full gap-2">
+              <button
+                className="w-2/5 py-4 text-lg font-bold bg-tint-3 hover:bg-tint-5 rounded-lg shadow-2xl transition-all duration-300"
+                onClick={handelPlus}
+              >
+                +
+              </button>
+              <p className="w-1/5 flex justify-center items-center py-4 rounded-lg bg-tint-3 text-lg">
+                {cartItems.find((item) => item.id === itemId)?.quantity}
+              </p>
+              <button
+                className="w-2/5 py-4 text-lg font-bold bg-tint-3 hover:bg-tint-5 rounded-lg shadow-2xl transition-all duration-300"
+                onClick={handelMines}
+              >
+                -
+              </button>
+            </div>
+          ) : (
+            <button
+              className="w-full py-4 text-lg font-bold bg-tint-3 hover:bg-tint-5 rounded-lg shadow-2xl transform hover:scale-105 transition-all duration-300"
+              onClick={handelAddToCart}
+            >
+              افزودن به سبد خرید
+            </button>
+          )}
+        </div>
       </div>
 
       {/* بخش توضیحات محصول */}
