@@ -4,6 +4,8 @@ import { ToastContainer } from "react-toastify";
 import { queryClient } from "../lib";
 import { ConfigProvider } from "antd";
 import { ModalsProvider } from "../contexts/modalsContext";
+import { Provider } from "react-redux";
+import { store } from "../store/store";
 
 interface Props {
   children: ReactNode;
@@ -14,7 +16,9 @@ const Providers = ({ children }: Props) => {
     <>
       <QueryClientProvider client={queryClient}>
         <ConfigProvider direction="rtl">
-          <ModalsProvider>{children}</ModalsProvider>
+          <ModalsProvider>
+            <Provider store={store}>{children}</Provider>
+          </ModalsProvider>
         </ConfigProvider>
       </QueryClientProvider>
       <ToastContainer rtl />
