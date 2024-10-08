@@ -1,0 +1,28 @@
+/* steps-custom.css */
+
+.custom-steps .ant-steps-item-icon {
+  background-color: #417f56;
+  border-color: #417f56;
+}
+
+.custom-steps .ant-steps-item-process .ant-steps-item-icon {
+  background-color: #417f56;
+  border-color: #417f56;
+}
+
+.custom-steps .ant-steps-item-finish .ant-steps-item-icon {
+  background-color: #417f56;
+  border-color: #417f56;
+}
+
+.custom-steps .ant-steps-item-title {
+  color: #417f56;
+}
+
+.custom-steps .ant-steps-item-process .ant-steps-item-title {
+  color: #417f56;
+}
+
+.custom-steps .ant-steps-item-finish .ant-steps-item-title {
+  color: #417f56;
+}
