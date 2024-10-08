@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { clearCart, removeFromCart } from "../../../../store/cartSlice";
 import { persistor } from "../../../../store/store";
+import { toast } from "react-toastify";
 
 export default function CartDeleteModal({
   productId,
@@ -20,8 +21,10 @@ export default function CartDeleteModal({
       persistor.purge();
       dispatch(clearCart());
       setDeleteAll(false);
+      toast.success("محصولات با موفقیت حذف شدند");
     } else {
       dispatch(removeFromCart(productId));
+      toast.success("محصول با موفقیت حذف شد");
     }
     setOpen(false);
   }
@@ -32,7 +35,7 @@ export default function CartDeleteModal({
   }
 
   return (
-    <div className="w-screen h-screen absolute -top-20 left-0 bg-black bg-opacity-70 flex justify-center items-center transition-opacity duration-300 ease-in-out p-7">
+    <div className="w-screen h-screen absolute -top-[76px] left-0 bg-black bg-opacity-70 flex justify-center items-center transition-opacity duration-300 ease-in-out p-7">
       <div className="h-[200px] bg-gradient-to-r from-gray-100 to-gray-50 rounded-lg shadow-xl transform scale-105 flex flex-col justify-evenly items-center p-8 gap-5 animate-fadeIn">
         <p className="text-xl font-semibold text-gray-800 text-center">
           {deleteAll
