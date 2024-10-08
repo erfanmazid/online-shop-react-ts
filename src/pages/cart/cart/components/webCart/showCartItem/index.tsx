@@ -1,4 +1,4 @@
-import { CartItem } from "../../../../../store/cartSlice";
+import { CartItem } from "../../../../../../store/cartSlice";
 import WebSingleItem from "./singleItem";
 
 export default function WebShowCartItem({

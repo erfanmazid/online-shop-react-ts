@@ -3,8 +3,8 @@ import {
   addToCart,
   CartItem,
   removeFromCart,
-} from "../../../../../../store/cartSlice";
-import useGetProduct from "../../../../../../hooks/get-product/useGetProduct";
+} from "../../../../../../../store/cartSlice";
+import useGetProduct from "../../../../../../../hooks/get-product/useGetProduct";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 

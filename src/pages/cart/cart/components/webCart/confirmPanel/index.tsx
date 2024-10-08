@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import { CartItem } from "../../../../../store/cartSlice";
+import { CartItem } from "../../../../../../store/cartSlice";
 export default function WebConfirmPanel({
   allPrice,
   items,

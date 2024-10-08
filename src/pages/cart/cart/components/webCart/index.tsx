@@ -1,4 +1,4 @@
-import { CartItem } from "../../../../store/cartSlice";
+import { CartItem } from "../../../../../store/cartSlice";
 import StepsComponent from "../steps";
 import WebConfirmPanel from "./confirmPanel";
 import WebShowCartItem from "./showCartItem";

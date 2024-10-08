@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CartItem } from "../../../../store/cartSlice";
+import { CartItem } from "../../../../../store/cartSlice";
 
 export default function SingleItem({
   item,

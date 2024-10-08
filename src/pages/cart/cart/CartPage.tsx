@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CartItem } from "../../store/cartSlice";
-import { useCartSelector } from "../../store/hooks";
+import { CartItem } from "../../../store/cartSlice";
+import { useCartSelector } from "../../../store/hooks";
 import CartItemsCompment from "./components/cartItems";
 import CartDeleteModal from "./components/deleteModal";
 import EmptyCartComponent from "./components/emptyCart";

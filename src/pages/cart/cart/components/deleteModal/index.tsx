@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { clearCart, removeFromCart } from "../../../../store/cartSlice";
-import { persistor } from "../../../../store/store";
+import { clearCart, removeFromCart } from "../../../../../store/cartSlice";
+import { persistor } from "../../../../../store/store";
 import { toast } from "react-toastify";
 
 export default function CartDeleteModal({

@@ -3,7 +3,7 @@ import {
   addToCart,
   CartItem,
   removeFromCart,
-} from "../../../../store/cartSlice";
+} from "../../../../../store/cartSlice";
 import SingleItem from "./SingleItem";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
