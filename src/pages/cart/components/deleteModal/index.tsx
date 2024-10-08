@@ -35,7 +35,7 @@ export default function CartDeleteModal({
   }
 
   return (
-    <div className="w-screen h-screen absolute -top-[76px] left-0 bg-black bg-opacity-70 flex justify-center items-center transition-opacity duration-300 ease-in-out p-7 md:-top-20">
+    <div className="w-screen h-screen absolute -top-[76px] left-0 bg-black bg-opacity-70 flex justify-center items-center transition-opacity duration-300 ease-in-out p-7 md:-top-20 z-[999]">
       <div className="h-[200px] bg-gradient-to-r from-gray-100 to-gray-50 rounded-lg shadow-xl transform scale-105 flex flex-col justify-evenly items-center p-8 gap-5 animate-fadeIn">
         <p className="text-xl font-semibold text-gray-800 text-center">
           {deleteAll
