@@ -4,9 +4,11 @@ import WebFooter from "../../footer/WebFooter";
 
 export default function WebLayout() {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <WebHeader />
-      <Outlet />
+      <div className="flex-1">
+        <Outlet />
+      </div>
       <WebFooter />
     </div>
   );
