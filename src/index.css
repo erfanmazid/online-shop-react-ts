@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,4 +7,7 @@
   .myContainer {
     @apply max-w-7xl mx-auto;
   }
+}
+* {
+  font-family: "Vazirmatn";
 }
