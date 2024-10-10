@@ -17,6 +17,7 @@ import {
   UserProfilePage,
   UserSignupPage,
 } from "../pages";
+import OrderResult from "../pages/orderResult/inex";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/products/:category",
         element: <ProductCategoryPage />,
+      },
+      {
+        path: "/order-result/:status",
+        element: <OrderResult />,
       },
     ],
   },
