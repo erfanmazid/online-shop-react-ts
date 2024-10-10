@@ -64,21 +64,29 @@ export default function MobileConfirm({ shipping }: { shipping: number }) {
             تومان
           </p>
         </div>
-        <button
-          className="w-full bg-primary text-[#fff] font-bold py-2 rounded-md"
-          disabled={shipping === 0}
-          onClick={() =>
-            location === "/payment"
-              ? navigate("/profile")
-              : navigate("/payment")
-          }
-        >
-          {Cookies.get("accessToken")
-            ? location === "/payment"
-              ? "تایید و پرداخت"
-              : "تکمیل اطلاعات"
-            : "ورود به حساب کاربری"}
-        </button>
+        {location === "/payment" ? (
+          <a href="http://localhost:5174/">
+            <button className="w-full bg-primary text-[#fff] font-bold py-2 rounded-md">
+              تایید و پرداخت
+            </button>
+          </a>
+        ) : (
+          <button
+            className="w-full bg-primary text-[#fff] font-bold py-2 rounded-md"
+            disabled={shipping === 0}
+            onClick={() =>
+              location === "/payment"
+                ? navigate("http://localhost:5174/")
+                : navigate("/payment")
+            }
+          >
+            {Cookies.get("accessToken")
+              ? location === "/payment"
+                ? "تایید و پرداخت"
+                : "تکمیل اطلاعات"
+              : "ورود به حساب کاربری"}
+          </button>
+        )}
       </div>
     </div>
   );
