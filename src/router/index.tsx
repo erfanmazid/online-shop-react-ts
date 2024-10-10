@@ -17,7 +17,7 @@ import {
   UserProfilePage,
   UserSignupPage,
 } from "../pages";
-import OrderResult from "../pages/orderResult/inex";
+import OrderResult from "../pages/orderResult/inexd";
 
 const router = createBrowserRouter([
   {
