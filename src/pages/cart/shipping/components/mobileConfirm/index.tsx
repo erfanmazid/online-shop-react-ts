@@ -5,6 +5,9 @@ import { useCartSelector } from "../../../../../store/hooks";
 export default function MobileConfirm({ shipping }: { shipping: number }) {
   const navigate = useNavigate();
 
+  const location = window.location.pathname;
+  const takhfif = Number(localStorage.getItem("takhfif"));
+
   const cartItems: CartItem[] = useCartSelector(
     (state) =>
       // state.cart.items.reduce((value, item) => value + item.quantity, 0)
@@ -23,6 +26,16 @@ export default function MobileConfirm({ shipping }: { shipping: number }) {
           سبد خرید ({cartItems.length.toLocaleString("fa-IR")})
         </p>
       </div>
+      {location === "/payment" && (
+        <div className="w-full flex flex-col mt-3 border-t border-gray-4 p-3 gap-4">
+          <div className="flex justify-between items-center w-full">
+            <p className="text-lg font-medium">تخفیف</p>
+            <p className="text-lg text-shade-1 font-medium">
+              {takhfif.toLocaleString("fa-IR")} تومان
+            </p>
+          </div>
+        </div>
+      )}
       <div className="w-full flex flex-col mt-3 border-t border-gray-4 p-3 gap-4">
         <div className="flex justify-between items-center w-full">
           <p className="text-lg font-medium">هزینه ارسال</p>
@@ -44,18 +57,27 @@ export default function MobileConfirm({ shipping }: { shipping: number }) {
         <div className="flex justify-between items-center w-full">
           <p className="text-lg font-medium">مبلغ قابل پرداخت</p>
           <p className="text-lg text-shade-1 font-medium">
-            {(shipping > 0 ? shipping + totalPrice : totalPrice).toLocaleString(
-              "fa-IR"
-            )}{" "}
+            {(shipping > 0
+              ? shipping + totalPrice - takhfif
+              : totalPrice - takhfif
+            ).toLocaleString("fa-IR")}{" "}
             تومان
           </p>
         </div>
         <button
           className="w-full bg-primary text-[#fff] font-bold py-2 rounded-md"
           disabled={shipping === 0}
-          onClick={() => navigate("/payment")}
+          onClick={() =>
+            location === "/payment"
+              ? navigate("/profile")
+              : navigate("/payment")
+          }
         >
-          {Cookies.get("accessToken") ? "تکمیل اطلاعات" : "ورود به حساب کاربری"}
+          {Cookies.get("accessToken")
+            ? location === "/payment"
+              ? "تایید و پرداخت"
+              : "تکمیل اطلاعات"
+            : "ورود به حساب کاربری"}
         </button>
       </div>
     </div>
