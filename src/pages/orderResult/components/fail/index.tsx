@@ -22,7 +22,7 @@ export default function FailPage() {
         </button>
         <button
           className="text-lg text-[#fff] bg-error border border-error px-5 py-2 rounded-md w-[208px]"
-          onClick={() => navigate("/profile")}
+          onClick={() => navigate("/cart")}
         >
           سفارش مجدد
         </button>
