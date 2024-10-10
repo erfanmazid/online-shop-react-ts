@@ -26,7 +26,7 @@ export default function CartPage() {
   };
 
   return (
-    <div className="flex justify-center items-center flex-col gap-7 p-5 myContainer relative">
+    <>
       {open && (
         <CartDeleteModal
           productId={productId}
@@ -35,35 +35,44 @@ export default function CartPage() {
           setDeleteAll={setDeleteAll}
         />
       )}
-      {cartItems.length > 0 && (
-        <WebCart
-          items={cartItems}
-          setOpen={setOpen}
-          setProductId={setProductId}
-          setDeleteAll={setDeleteAll}
-        />
-      )}
-      <div className="w-full flex justify-between items-center md:hidden">
-        <button onClick={clearPersistedData} disabled={cartItems.length === 0}>
-          <img
-            src="/assets/trash.svg"
-            alt=""
-            className={cartItems.length > 0 ? "" : "opacity-40 disabled"}
-          />
-        </button>
-        <h1 className="text-xl font-medium">سبد خرید</h1>
-        <img src="/assets/backArrow.svg" alt="" onClick={() => navigate(-1)} />
-      </div>
-      {cartItems.length === 0 && <EmptyCartComponent />}
-      <div className="md:hidden w-full">
+      <div className="flex justify-center items-center flex-col gap-7 p-5 myContainer relative">
         {cartItems.length > 0 && (
-          <CartItemsCompment
+          <WebCart
             items={cartItems}
             setOpen={setOpen}
             setProductId={setProductId}
+            setDeleteAll={setDeleteAll}
           />
         )}
+        <div className="w-full flex justify-between items-center md:hidden">
+          <button
+            onClick={clearPersistedData}
+            disabled={cartItems.length === 0}
+          >
+            <img
+              src="/assets/trash.svg"
+              alt=""
+              className={cartItems.length > 0 ? "" : "opacity-40 disabled"}
+            />
+          </button>
+          <h1 className="text-xl font-medium">سبد خرید</h1>
+          <img
+            src="/assets/backArrow.svg"
+            alt=""
+            onClick={() => navigate(-1)}
+          />
+        </div>
+        {cartItems.length === 0 && <EmptyCartComponent />}
+        <div className="md:hidden w-full">
+          {cartItems.length > 0 && (
+            <CartItemsCompment
+              items={cartItems}
+              setOpen={setOpen}
+              setProductId={setProductId}
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
