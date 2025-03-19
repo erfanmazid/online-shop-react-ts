@@ -1,6 +1,7 @@
 # Online Shop - React & TypeScript
 
 This is an **Online Shop** project built using **React** and **TypeScript**. The project showcases an online product page with features like product details, quantity management, cart management, and more.
+[🎥 Watch the Video](https://drive.google.com/file/d/1Rb347Ba6LKeEhVpyTW8NPHBFEIe2ss1t/view?usp=sharing)
 
 ## Features
 
